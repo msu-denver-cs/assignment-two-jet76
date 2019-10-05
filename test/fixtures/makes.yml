@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+# created make one
 one:
-  name: MyString
-  country: MyString
+  name: DMC
+  country: United States
 
+#created make two
 two:
-  name: MyString
-  country: MyString
+  name: Porsche
+  country: Germany

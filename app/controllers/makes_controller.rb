@@ -1,6 +1,12 @@
 class MakesController < ApplicationController
   before_action :set_make, only: [:show, :edit, :update, :destroy]
 
+  # Implement make search
+  def search
+    @makes = Make.where("name like ?", "%#{params[:query]}%")
+    render :index
+  end
+
   # GET /makes
   # GET /makes.json
   def index
@@ -10,6 +16,7 @@ class MakesController < ApplicationController
   # GET /makes/1
   # GET /makes/1.json
   def show
+    @makes = Make.find(params[:id]) #show make
   end
 
   # GET /makes/new

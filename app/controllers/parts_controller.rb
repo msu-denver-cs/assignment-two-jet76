@@ -1,6 +1,12 @@
 class PartsController < ApplicationController
   before_action :set_part, only: [:show, :edit, :update, :destroy]
 
+  # Implement parts search
+  def search
+    @parts = Part.where("name like ?", "%#{params[:query]}%")
+    render :index
+  end
+
   # GET /parts
   # GET /parts.json
   def index
@@ -10,6 +16,7 @@ class PartsController < ApplicationController
   # GET /parts/1
   # GET /parts/1.json
   def show
+    @parts = Part.find(params[:id]) #show part
   end
 
   # GET /parts/new

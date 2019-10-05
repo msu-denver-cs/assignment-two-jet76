@@ -1,9 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+# created fixture 1
 one:
-  model: MyString
-  vin: MyString
-  make: one
+  model: DeLorean
+  vin: ABC123
+  make: DMC
 
 two:
   model: MyString

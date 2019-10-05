@@ -1,7 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+#created part 1
 one:
-  name: MyString
+  name: Flux Capacitor
 
+# created part 2
 two:
-  name: MyString
+  name: Mr. Fusion

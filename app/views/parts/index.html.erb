@@ -2,6 +2,15 @@
 
 <h1>Parts</h1>
 
+<!-- Search form for parts -->
+<%= form_tag(search_parts_url, method: "get") do %>
+    <%= label_tag(:query, "Search parts by name:") %>
+    <%= text_field_tag(:query) %>
+    <%= submit_tag("Search") %>
+<% end %>
+
+<br>
+
 <table>
   <thead>
     <tr>

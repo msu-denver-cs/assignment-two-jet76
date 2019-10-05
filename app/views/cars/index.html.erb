@@ -2,6 +2,15 @@
 
 <h1>Cars</h1>
 
+<!-- Search form for cars -->
+<%= form_tag(search_cars_url, method: "get") do %>
+    <%= label_tag(:query, "Search cars by model or vin:") %>
+    <%= text_field_tag(:query) %>
+    <%= submit_tag("Search") %>
+<% end %>
+
+<br>
+
 <table>
   <thead>
     <tr>
@@ -15,7 +24,7 @@
   <tbody>
     <% @cars.each do |car| %>
       <tr>
-        <td><%= car.make.name %></td>
+        <td><%= car.make.name if car.make %></td><!-- fix for failing get index url test -->
         <td><%= car.model %></td>
         <td><%= car.vin %></td>
         <td><%= link_to 'Show', car %></td>

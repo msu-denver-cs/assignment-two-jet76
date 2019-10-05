@@ -1,6 +1,12 @@
 class CarsController < ApplicationController
   before_action :set_car, only: [:show, :edit, :update, :destroy]
 
+  #Implement cars search
+  def search
+    @cars = Car.where("model like :search OR vin like :search", search:"%#{params[:query]}%")
+    render :index
+  end
+
   # GET /cars
   # GET /cars.json
   def index
@@ -10,6 +16,7 @@ class CarsController < ApplicationController
   # GET /cars/1
   # GET /cars/1.json
   def show
+    @cars = Car.find(params[:id]) #show car
   end
 
   # GET /cars/new
@@ -27,6 +34,7 @@ class CarsController < ApplicationController
   # POST /cars.json
   def create
     @car = Car.new(car_params)
+    @parts = Part.all # added to prevent create from breaking when no values entered
 
     respond_to do |format|
       if @car.save

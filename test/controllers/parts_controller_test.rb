@@ -15,12 +15,41 @@ class PartsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  # Modified to create new part
   test "should create part" do
     assert_difference('Part.count') do
-      post parts_url, params: { part: { name: @part.name } }
+      post parts_url, params: { part: { name: "Warp Core" } }
     end
 
     assert_redirected_to part_url(Part.last)
+  end
+
+  # search shouldn't find missing part
+  test "shouldn't find missing part" do
+    assert Part.where("name like ?", "Trash Panda").length == 0 # .length is the number of results returned
+  end
+
+  # search should find part fixture
+  test "should find part from fixture" do
+    assert Part.where("name like ?", "Flux Capacitor").length == 1 # .length is the number of results returned
+  end
+
+  # search always returns 200 OK
+  test "searches always return 200" do
+    get search_parts_url, params: {query: "Velociraptor"}
+    assert_equal 200, status
+  end
+
+  # should find Mr. Fusion
+  test "should find Mr. Fusion" do
+    get search_parts_url, params: {query: "Mr. Fusion"}
+    assert_select 'td', 'Mr. Fusion'
+  end
+
+  # shouldn't find Warp Core
+  test "shouldn't find Warp Core" do
+    get search_parts_url, params: {query: "Warp Core"}
+    assert_select 'td', false
   end
 
   test "should show part" do
